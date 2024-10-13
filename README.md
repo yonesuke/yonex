@@ -1,5 +1,21 @@
 # yonex
 
+## how to install
+
+### python package
+```bash
+pip install git+http://github.com/yonesuke/yonex.git
+```
+
+### visualization
+install graphviz
+
+```bash
+sudo apt update
+sudo apt install graphviz
+```
+
+
 ## examples
 
 ### Tanh
