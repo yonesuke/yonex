@@ -1,5 +1,7 @@
 # yonex
 
+『ゼロから作る Deep Learning ❸』の再現実装。
+
 ## how to install
 
 ### python package
@@ -8,7 +10,7 @@ pip install git+http://github.com/yonesuke/yonex.git
 ```
 
 ### visualization
-install graphviz
+install graphviz, for Windows or macOS, see the official site.
 
 ```bash
 sudo apt update
