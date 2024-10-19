@@ -2,6 +2,8 @@ import numpy as np
 import weakref
 import contextlib
 
+from yonex.functions import reshape
+
 # util functions and classes
 def as_array(x):
     if np.isscalar(x):
@@ -103,6 +105,11 @@ class Variable:
             if not retain_grad:
                 for y in f.outputs:
                     y().grad = None
+    
+    def reshape(self, *shape):
+        if len(shape) == 1 and isinstance(shape[0], (tuple, list)):
+            shape = shape[0]
+        return reshape(self, shape)
 
 class Function:
     def __call__(self, *inputs):

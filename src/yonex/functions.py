@@ -1,5 +1,6 @@
 import numpy as np
 from yonex import Variable, Function
+from yonex.core import as_variable
 
 class Sin(Function):
     def forward(self, x: np.ndarray) -> np.ndarray:
@@ -36,3 +37,20 @@ class Tanh(Function):
         return gx
 def tanh(x: Variable) -> Variable:
     return Tanh()(x)
+
+class Reshape(Function):
+    def __init__(self, shape) -> None:
+        self.shape = shape
+    
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        self.x_shape = x.shape
+        y = x.reshape(self.shape)
+        return y
+    
+    def backward(self, gy):
+        gx = reshape(gy, self.x_shape)
+        return gx
+def reshape(x: Variable, shape) -> Variable:
+    if x.shape == shape:
+        return as_variable(x)
+    return Reshape(shape)(x)
