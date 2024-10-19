@@ -2,7 +2,7 @@ import numpy as np
 import weakref
 import contextlib
 
-from yonex.functions import reshape
+from yonex.functions import reshape, transpose
 
 # util functions and classes
 def as_array(x):
@@ -110,6 +110,13 @@ class Variable:
         if len(shape) == 1 and isinstance(shape[0], (tuple, list)):
             shape = shape[0]
         return reshape(self, shape)
+    
+    def transpose(self):
+        return transpose(self)
+    
+    @property
+    def T(self):
+        return transpose(self)
 
 class Function:
     def __call__(self, *inputs):

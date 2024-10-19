@@ -54,3 +54,14 @@ def reshape(x: Variable, shape) -> Variable:
     if x.shape == shape:
         return as_variable(x)
     return Reshape(shape)(x)
+
+class Transpose(Function):
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        y = np.transpose(x)
+        return y
+    
+    def backward(self, gy):
+        gx = transpose(gy)
+        return gy
+def transpose(x: Variable) -> Variable:
+    return Transpose()(x)
